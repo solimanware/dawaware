@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Drug Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="card">
+    <div class="picture-container ion-padding-top">
+      <div class="picture">
+        <ion-img
+          height="100"
+          src="assets/imgs/drugs/{{drug.id-1}}.jpg"
+        ></ion-img>
+      </div>
+    </div>
+
+    <div class="details ion-padding">
+      <div class="detail" *ngIf="drug.tradename">
+        <ion-text color="dark">
+          <h3 class="title">Tradename:</h3>
+        </ion-text>
+        <ion-text color="dark">
+          <p class="tradename ion-margin-start ion-text-center">
+            {{drug.tradename}}
+          </p>
+        </ion-text>
+      </div>
+      <div class="detail" *ngIf="activeingredients.length">
+        <ion-text color="dark">
+          <h3 class="title">Active Ingredients:</h3>
+        </ion-text>
+        <ion-text color="danger">
+          <ng-container *ngFor="let item of activeingredients">
+            <p class="clickable ion-margin-start">{{item}}</p>
+          </ng-container>
+        </ion-text>
+      </div>
+      <div class="detail" *ngIf="drug.price">
+        <ion-text color="dark">
+          <h3 class="title">Price:</h3>
+        </ion-text>
+        <ion-text color="dark">
+          <p class="info ion-margin-start">{{drug.price}}</p>
+        </ion-text>
+      </div>
+      <div class="detail" *ngIf="drug.group">
+        <ion-text color="dark">
+          <h3 class="title">Drug group:</h3>
+        </ion-text>
+        <ion-text color="dark">
+          <p class="info ion-margin-start">{{drug.group}}</p>
+        </ion-text>
+      </div>
+      <div class="detail" *ngIf="drug.company">
+        <ion-text color="dark">
+          <h3 class="title">Company:</h3>
+        </ion-text>
+        <ion-text color="dark">
+          <p class="info ion-margin-start">{{drug.company}}</p>
+        </ion-text>
+      </div>
+      <!-- create action buttons -->
+      <div class="actions">
+        <ion-button class="action" color="dark" expand="block">
+          Google more</ion-button
+        >
+        <ion-button class="action" color="dark" expand="block">
+          View Pictures
+        </ion-button>
+      </div>
+      <div class="full-width">
+        <ion-button color="dark" expand="full" (click)="togglePharma()">
+          {{ showPharma? 'Hide Detailed Pharma' : "View Detailed Pharma"
+          }}</ion-button
+        >
+      </div>
+      <!-- create view pharma section -->
+      <div id="pharma{{drug.id}}" style="height: 1px"></div>
+
+      <div [hidden]="!showPharma">
+        <div>
+          <h3 class="title" *ngIf="drug.composition">Composition:</h3>
+          <div>
+            <p *ngFor="let s of drug.composition?.split('\n')">
+              <strong padding-left>{{s}}</strong>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3 class="title" *ngIf="drug.pamphlet">Pharmacology</h3>
+          <div padding>
+            <p *ngFor="let s of drug?.pamphlet?.split('\n')">
+              <strong>{{s}}</strong>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3 class="title" *ngIf="drug.dosage">Dose</h3>
+          <div padding>
+            <p *ngFor="let s of drug?.dosage?.split('\n')">
+              <strong>{{s}}</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="similars">
+      <ion-list lines="none" class="bg-transparent">
+        <ion-item
+          color="none"
+          lines="none"
+          *ngFor="let similar of similars"
+          (click)="openDrug(similar)"
+        >
+          <ion-label
+            ><span class="trim-text" style="float: left"
+              >{{similar.tradename}}</span
+            ><span style="float: right">{{similar.price}} EGP</span></ion-label
+          >
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

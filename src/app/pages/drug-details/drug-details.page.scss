@@ -1,0 +1,104 @@
+ion-content {
+  --background: linear-gradient(
+    to right,
+    var(--ion-color-primary),
+    var(--ion-color-secondary),
+    var(--ion-color-primary)
+  );
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    border-radius: 12px;
+    height: fit-content;
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    .picture-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      .picture {
+        padding: 5px;
+        width: 50%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        ion-img {
+          width: auto;
+          height: 100%;
+          //mix-blend-mode: multiply;
+          filter: contrast(1);
+          border: 1px solid #fff;
+        }
+      }
+    }
+
+    .details {
+      justify-content: start;
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      width: 100%;
+      .clickable {
+        border-bottom: 2px solid tomato;
+        display: inline-block;
+        line-height: 0.85;
+      }
+      .detail {
+        margin-inline-start: 16px;
+      }
+      .tradename {
+        text-align: justify;
+        font-size: 5.4vw;
+        margin-bottom: -1em !important;
+        &::after {
+          content: "";
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+    .actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      .action {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        color: white;
+        .icon {
+          margin-right: 8px;
+        }
+      }
+    }
+    .full-width {
+      width: 100%;
+    }
+    .trim-text {
+      //trim text
+      width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bg-transparent {
+      background: transparent;
+    }
+  }
+}
